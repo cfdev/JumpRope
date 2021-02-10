@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>src/qml/main.qml</file>
+        <file>src/qml/BtnPlay.qml</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>design/btn_play.svg</file>
+        <file>design/btn_wait.svg</file>
+    </qresource>
+</RCC>
