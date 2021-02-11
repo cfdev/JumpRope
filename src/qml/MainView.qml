@@ -17,19 +17,24 @@
 */
 
 import QtQuick 2.0
+import QtQuick.Controls 2.13
 
-Item {
-    id: root
-    property bool state: false
+Page {
 
-    // define signal
-    signal run()
-    signal wait()
-
-    // design
     Rectangle{
+        color: "#c8c9e2"
+        anchors.fill: parent;
+        Text {
+            id: name
+            text: qsTr("MainView")
+            anchors.horizontalCenter: parent.horizontalCenter;
+            anchors.verticalCenter: parent.verticalCenter;
+        }
+    }
+
+    /*Rectangle{
         id:body
-        color: "#00000000"    // ARGB fully transparent
+        color:
         anchors.fill: parent
 
         Image{
@@ -44,17 +49,7 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onPressed: {
-                root.state = !root.state;
-                if(root.state == true)
-                {
-                    img.source = "qrc:/img/design/btn_wait.svg";
-                    root.run();
-                }
-                else{
-                    img.source = "qrc:/img/design/btn_play.svg";
-                    root.wait();
-                }
             }
         }
-    }
+    }*/
 }

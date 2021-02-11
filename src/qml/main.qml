@@ -19,6 +19,7 @@
 import QtQuick 2.14
 import QtQuick.Window 2.14
 import QtQuick.Controls 2.13
+import QtQuick.Layouts 1.14
 
 Window {
     id: window
@@ -49,7 +50,17 @@ Window {
         }
     }
 
-    /// BOTTOMBAR
+    /// CONTENT
+    StackView {
+        id: stackView
+        anchors.top: topbar.bottom
+        width: window.width
+        height: window.height - topbar.height - footbar.height
+        anchors.horizontalCenter: parent.horizontalCenter
+        initialItem: "MainView.qml"
+    }
+
+    /// BOTTOMBAR    
     Rectangle {
         id: footbar
         width: window.width
@@ -63,8 +74,14 @@ Window {
             height: 100
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            onRun :      console.log(" run");
-            onWait :     console.log("he Wait :) ");
+            onRun :{
+                console.log(" run");
+                stackView.replace("RunView.qml", StackView.PushTransition);
+            }
+            onWait :{
+                console.log("he Wait :-) ");
+                stackView.replace("MainView.qml", StackView.PopTransition);
+            }
         }
     }
 }

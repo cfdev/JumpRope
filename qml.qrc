@@ -2,6 +2,9 @@
     <qresource prefix="/">
         <file>src/qml/main.qml</file>
         <file>src/qml/BtnPlay.qml</file>
+        <file>src/qml/RowItem.qml</file>
+        <file>src/qml/MainView.qml</file>
+        <file>src/qml/RunView.qml</file>
     </qresource>
     <qresource prefix="/img">
         <file>design/btn_play.svg</file>
