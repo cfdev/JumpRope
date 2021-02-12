@@ -57,7 +57,7 @@ Window {
         width: window.width
         height: window.height - topbar.height - footbar.height
         anchors.horizontalCenter: parent.horizontalCenter
-        initialItem: "MainView.qml"
+        initialItem: "PageMain.qml"
     }
 
     /// BOTTOMBAR    
@@ -69,20 +69,38 @@ Window {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
 
-        BtnPlay{
+        BtnStop{
+            id: btnStop
+            opacity: 0
+            x: 50
             width: 100
             height: 100
+            anchors.verticalCenter:  parent.verticalCenter
+            onClicked :{
+                console.log(" Stop");
+                stackView.replace("PageMain.qml", StackView.PopTransition);
+                btnPlay.resetState();
+                btnStop.opacity= 0
+            }
+
+        }
+
+        BtnPlay{
+            id: btnPlay
+            width: 100
+            height: 100
+            anchors.verticalCenter:  parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
             onRun :{
                 console.log(" run");
-                stackView.replace("RunView.qml", StackView.PushTransition);
+                stackView.replace("PageRun.qml", StackView.PushTransition);
+                btnStop.opacity = 1
             }
             onWait :{
                 console.log("he Wait :-) ");
-                stackView.replace("MainView.qml", StackView.PopTransition);
             }
         }
+
     }
 }
 

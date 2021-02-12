@@ -17,39 +17,31 @@
 */
 
 import QtQuick 2.0
-import QtQuick.Controls 2.13
 
-Page {
+Item {
+    id: root
 
+    // define signal
+    signal clicked()
+
+    // design
     Rectangle{
-        color: "#c8c9e2"
-        anchors.fill: parent;
-        Text {
-            id: name
-            text: qsTr("MainView")
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.verticalCenter: parent.verticalCenter;
-        }
-    }
-
-    /*Rectangle{
         id:body
-        color:
+        color: "#00000000"    // ARGB fully transparent
         anchors.fill: parent
 
         Image{
             id:img
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            source: "qrc:/img/design/btn_play.svg"
+            source: "qrc:/img/design/btn_stop.svg"
         }
 
         MouseArea{
             id:area
             anchors.fill: parent
             hoverEnabled: true
-            onPressed: {
+            onPressed: root.clicked();
             }
-        }
-    }*/
+     }
 }

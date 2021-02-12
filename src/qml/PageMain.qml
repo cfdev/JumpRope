@@ -22,11 +22,11 @@ import QtQuick.Controls 2.13
 Page {
 
     Rectangle{
-        color: "#e3b161"
+        color: "#c8c9e2"
         anchors.fill: parent;
         Text {
             id: name
-            text: qsTr("RunView")
+            text: qsTr("Page Main")
             anchors.horizontalCenter: parent.horizontalCenter;
             anchors.verticalCenter: parent.verticalCenter;
         }
