@@ -20,11 +20,18 @@ import QtQuick 2.0
 
 Item {
     id: root
-    property bool state: false
+    property string icon: "qrc:/img/design/btn_play.svg"
 
     // define signal
     signal run()
     signal wait()
+
+    // functions
+    function resetState()
+    {
+        img.source = "qrc:/img/design/btn_play.svg";
+        root.state = "wait";
+    }
 
     // design
     Rectangle{
@@ -36,7 +43,7 @@ Item {
             id:img
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            source: "qrc:/img/design/btn_play.svg"
+            source: root.icon
         }
 
         MouseArea{
@@ -44,17 +51,32 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onPressed: {
-                root.state = !root.state;
-                if(root.state == true)
+                if(root.state === "wait")
                 {
                     img.source = "qrc:/img/design/btn_wait.svg";
+                    root.state = "run";
                     root.run();
                 }
                 else{
                     img.source = "qrc:/img/design/btn_play.svg";
+                    root.state = "wait";
                     root.wait();
                 }
             }
         }
     }
+
+    states: [
+        State {
+            name: "wait"
+            PropertyChanges { target: root;  icon : "qrc:/img/design/btn_play.svg"}
+        },
+        State {
+            name: "run"
+            PropertyChanges { target: root;  icon : "qrc:/img/design/btn_wait.svg"}
+        }
+    ]
+
+    // Default State
+    state: "wait"
 }
