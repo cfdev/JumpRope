@@ -18,17 +18,32 @@
 
 import QtQuick 2.0
 import QtQuick.Controls 2.13
+import QtQuick.Layouts 1.14
 
 Page {
+    id: page
 
-    Rectangle{
-        color: "#c8c9e2"
-        anchors.fill: parent;
-        Text {
-            id: name
-            text: qsTr("Page Main")
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.verticalCenter: parent.verticalCenter;
-        }
+    TimeItem{
+        id:itemWork
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: itemRecup.top
+        name: qsTr("Work");
+        value: 80
+    }
+
+    TimeItem{
+        id:itemRecup
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        name: qsTr("Recuperation");
+        value: 0
+    }
+
+    CountItem{
+        id:itemCount
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: itemRecup.bottom
+        name: qsTr("Count");
+        value: 2
     }
 }

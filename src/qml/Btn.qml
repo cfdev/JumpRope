@@ -20,6 +20,7 @@ import QtQuick 2.0
 
 Item {
     id: root
+    property alias icon: img.source
     width: 75
     height: 75
 
@@ -36,7 +37,7 @@ Item {
             id:img
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            source: "qrc:/img/design/btn_stop.svg"
+            source: root.icon
         }
 
         MouseArea{
@@ -44,6 +45,15 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onPressed: root.clicked();
+            onPressAndHold: timer.start();
+            onReleased: timer.stop();
             }
+
+        Timer{
+            id: timer
+            interval: 10
+            repeat: true
+            onTriggered: root.clicked();
+        }
      }
 }

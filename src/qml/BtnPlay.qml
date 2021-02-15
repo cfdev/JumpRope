@@ -21,6 +21,8 @@ import QtQuick 2.0
 Item {
     id: root
     property string icon: "qrc:/img/design/btn_play.svg"
+    width: 75
+    height: 75
 
     // define signal
     signal run()

@@ -2,14 +2,18 @@
     <qresource prefix="/">
         <file>src/qml/main.qml</file>
         <file>src/qml/BtnPlay.qml</file>
-        <file>src/qml/RowItem.qml</file>
+        <file>src/qml/TimeItem.qml</file>
         <file>src/qml/PageMain.qml</file>
         <file>src/qml/PageRun.qml</file>
         <file>src/qml/BtnStop.qml</file>
+        <file>src/qml/Btn.qml</file>
+        <file>src/qml/CountItem.qml</file>
     </qresource>
     <qresource prefix="/img">
         <file>design/btn_play.svg</file>
         <file>design/btn_wait.svg</file>
         <file>design/btn_stop.svg</file>
+        <file>design/btn_less.svg</file>
+        <file>design/btn_more.svg</file>
     </qresource>
 </RCC>

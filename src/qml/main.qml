@@ -19,7 +19,7 @@
 import QtQuick 2.14
 import QtQuick.Window 2.14
 import QtQuick.Controls 2.13
-import QtQuick.Layouts 1.14
+
 
 Window {
     id: window
@@ -64,7 +64,7 @@ Window {
     Rectangle {
         id: footbar
         width: window.width
-        height: 127
+        height: 100
         color: window.mainColor
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
@@ -73,8 +73,6 @@ Window {
             id: btnStop
             opacity: 0
             x: 50
-            width: 100
-            height: 100
             anchors.verticalCenter:  parent.verticalCenter
             onClicked :{
                 console.log(" Stop");
@@ -87,8 +85,6 @@ Window {
 
         BtnPlay{
             id: btnPlay
-            width: 100
-            height: 100
             anchors.verticalCenter:  parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             onRun :{
