@@ -44,6 +44,6 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onPressed: root.clicked();
-            }
+        }
      }
 }

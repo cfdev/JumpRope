@@ -21,8 +21,8 @@ import QtQuick 2.0
 Item {
     id: root
     property alias icon: img.source
-    width: 75
-    height: 75
+    width: 50
+    height: 50
 
     // define signal
     signal clicked()
@@ -51,7 +51,7 @@ Item {
 
         Timer{
             id: timer
-            interval: 10
+            interval: 50
             repeat: true
             onTriggered: root.clicked();
         }

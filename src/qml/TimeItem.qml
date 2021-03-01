@@ -18,15 +18,17 @@
 
 import QtQuick 2.0
 
-Item {
+Rectangle {
     id: root
-    height: 200
+    height: 150
+    color: "red"
+    border.color: "black"
+    border.width: 5
+
     property string name: qsTr("title")
-    property int value: 0 // secondes
+    property int value: 5 // secondes
 
     Text {
-        x: -9
-        y: 18
         color: "#646262"
         text: name;
         horizontalAlignment: Text.AlignHCenter
@@ -39,8 +41,6 @@ Item {
 
     Text {
         id: title_value
-        x: -12
-        y: 92
         color: "#646262"
         text: valToTime(value)
         anchors.horizontalCenterOffset: 0
@@ -52,32 +52,30 @@ Item {
 
     Btn {
         id: btn_more
+        anchors.verticalCenter: title_value.verticalCenter
         anchors.left: title_value.right
         anchors.leftMargin: 24
-        y: 99
         icon: "qrc:/img/design/btn_more.svg"
         onClicked: {
-            root.value++;
+            root.value +=5;
+            if(root.value >= 5940) root.value = 5940;
         }
     }
 
     Btn {
         id: btn_less
+        anchors.verticalCenter: title_value.verticalCenter
         anchors.right: title_value.left
         anchors.rightMargin: 24
-        y: 99
         icon: "qrc:/img/design/btn_less.svg"
         onClicked: {
-            root.value--;
+            root.value -= 5;
+            if(root.value <5) root.value = 5;
         }
     }
 
     function valToTime(val)
     {
-        // Born value
-        if(val <0) val = 0;
-        if(val >= 5940) val = 5940;
-
         // Get minutes
         var minutes = (val/60).toString().split(".")[0];
 
@@ -90,6 +88,7 @@ Item {
         // Return string
         return minutes.toString().padStart(2, "0") + " : " + seconde.toString().padStart(2, "0");
     }
+
 }
 
 

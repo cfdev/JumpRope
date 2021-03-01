@@ -16,12 +16,12 @@
     along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.0
+import QtQuick 2.14
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.14
 
 Page {
-    id: page
+    id:root
 
     TimeItem{
         id:itemWork
@@ -36,7 +36,7 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         name: qsTr("Recuperation");
-        value: 0
+        value: 5
     }
 
     CountItem{

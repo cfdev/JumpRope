@@ -20,7 +20,6 @@ import QtQuick 2.14
 import QtQuick.Window 2.14
 import QtQuick.Controls 2.13
 
-
 Window {
     id: window
     visible: true
@@ -33,7 +32,7 @@ Window {
     Rectangle {
         id: topbar
         width: window.width
-        height: 100
+        height: 50
         color: window.mainColor
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -48,6 +47,18 @@ Window {
             font.weight: Font.Bold
             font.family: "Open Sans"
         }
+
+        RoundButton {
+            id: btnAbout
+            anchors.right: topbar.right
+            anchors.rightMargin: 10
+            anchors.verticalCenter:  parent.verticalCenter
+            text: "?"
+            onClicked :{
+                if(stackView.currentItem !== page_about)
+                    stackView.replace(page_about)
+            }
+        }
     }
 
     /// CONTENT
@@ -57,7 +68,17 @@ Window {
         width: window.width
         height: window.height - topbar.height - footbar.height
         anchors.horizontalCenter: parent.horizontalCenter
-        initialItem: "PageMain.qml"
+        clip: true
+
+        initialItem: PageMain{
+            id:page_main
+        }
+        PageAbout{
+            id:page_about
+        }
+        PageRun{
+            id:page_run
+        }
     }
 
     /// BOTTOMBAR    
@@ -72,15 +93,18 @@ Window {
         BtnStop{
             id: btnStop
             opacity: 0
+            enabled: false
             x: 50
             anchors.verticalCenter:  parent.verticalCenter
             onClicked :{
                 console.log(" Stop");
-                stackView.replace("PageMain.qml", StackView.PopTransition);
+                if(stackView.currentItem !== page_main)
+                    stackView.replace(page_main);
                 btnPlay.resetState();
-                btnStop.opacity= 0
+                btnStop.enabled = false
+                btnStop.opacity = 0
+                btnAbout.enabled = true
             }
-
         }
 
         BtnPlay{
@@ -89,14 +113,16 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             onRun :{
                 console.log(" run");
-                stackView.replace("PageRun.qml", StackView.PushTransition);
+                if(stackView.currentItem !== page_run)
+                    stackView.replace(page_run, StackView.PushTransition);
+                btnStop.enabled = true
                 btnStop.opacity = 1
+                btnAbout.enabled = false
             }
             onWait :{
                 console.log("he Wait :-) ");
             }
         }
-
     }
 }
 

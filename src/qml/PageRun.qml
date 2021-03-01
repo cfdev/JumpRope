@@ -16,19 +16,38 @@
     along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.0
+import QtQuick 2.14
 import QtQuick.Controls 2.13
+import QtQuick.Window 2.14
 
 Page {
+    id:root
 
     Rectangle{
         color: "#e3b161"
         anchors.fill: parent;
+
         Text {
-            id: name
-            text: qsTr("Page Run")
+            id: sreenc
+            text: qsTr("desktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight +"<br>"+ qsTr("Size : ") + root.width + " x " + root.height;
             anchors.horizontalCenter: parent.horizontalCenter;
             anchors.verticalCenter: parent.verticalCenter;
         }
+
+       /* Rectangle {
+            id: _animeTest
+            anchors.horizontalCenter: parent.horizontalCenter;
+            anchors.verticalCenter: parent.verticalCenter;
+            width: 50
+            height: 50
+            color: "lightsteelblue"
+            RotationAnimator on rotation {
+                loops: Animation.Infinite
+                from: 0;
+                to: 360;
+                duration: 2000
+                running: true
+            }
+        }*/
     }
 }

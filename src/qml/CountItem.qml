@@ -22,7 +22,7 @@ Item {
     id: root
     height: 200
     property string name: qsTr("title")
-    property int value: 0
+    property int value: 1
 
     Text {
         x: -9
@@ -54,6 +54,7 @@ Item {
 
     Btn {
         id: btn_more
+        anchors.verticalCenter: title_value.verticalCenter
         anchors.left: title_value.right
         anchors.leftMargin: 32
         y: 99
@@ -65,12 +66,13 @@ Item {
 
     Btn {
         id: btn_less
+        anchors.verticalCenter: title_value.verticalCenter
         anchors.right: title_value.left
         anchors.rightMargin: 32
         y: 99
         icon: "qrc:/img/design/btn_less.svg"
         onClicked: {
-            if(value>0) root.value--;
+            if(value>1) root.value--;
         }
     }
 }
