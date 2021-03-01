@@ -16,15 +16,28 @@
     along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <QDebug>
+#include <QDir>
+#include <QFontDatabase>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+///
+/// \brief main
+/// \param argc
+/// \param argv
+/// \return
+///
 int main(int argc, char *argv[])
 {
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
   QGuiApplication app(argc, argv);
 
+  // Fonts
+  if (QFontDatabase::addApplicationFont(":/fonts/design/fonts/OpenSans-SemiBold.ttf"))
+    qCritical() << "Fail to add font ";
+
+  // QML
   QQmlApplicationEngine engine;
   const QUrl url(QStringLiteral("qrc:/src/qml/main.qml"));
   QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -34,5 +47,5 @@ int main(int argc, char *argv[])
       }, Qt::QueuedConnection);
   engine.load(url);
 
-  return app.exec();
+  return QGuiApplication::exec();
 }
