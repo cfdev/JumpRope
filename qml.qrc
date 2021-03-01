@@ -17,4 +17,9 @@
         <file>design/btn_less.svg</file>
         <file>design/btn_more.svg</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>design/fonts/OpenSans-Bold.ttf</file>
+        <file>design/fonts/OpenSans-Regular.ttf</file>
+        <file>design/fonts/OpenSans-SemiBold.ttf</file>
+    </qresource>
 </RCC>
