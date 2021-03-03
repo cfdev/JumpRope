@@ -93,16 +93,14 @@ Window {
         BtnStop{
             id: btnStop
             opacity: 0
-            enabled: false
             x: 50
             anchors.verticalCenter:  parent.verticalCenter
             onClicked :{
                 console.log(" Stop");
                 if(stackView.currentItem !== page_main)
-                    stackView.replace(page_main);
+                    stackView.replace(page_main, StackView.PopTransition);
                 btnPlay.resetState();
-                btnStop.enabled = false
-                btnStop.opacity = 0
+                btnStop.hide();
                 btnAbout.enabled = true
             }
         }
@@ -115,8 +113,7 @@ Window {
                 console.log(" run");
                 if(stackView.currentItem !== page_run)
                     stackView.replace(page_run, StackView.PushTransition);
-                btnStop.enabled = true
-                btnStop.opacity = 1
+                btnStop.show();
                 btnAbout.enabled = false
             }
             onWait :{

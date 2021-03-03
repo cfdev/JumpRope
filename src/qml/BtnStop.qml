@@ -26,6 +26,16 @@ Item {
     // define signal
     signal clicked()
 
+    // functions
+    function hide()
+    {
+        root.opacity = 0;
+    }
+    function show()
+    {
+        root.opacity = 1;
+    }
+
     // design
     Rectangle{
         id:body
@@ -43,7 +53,7 @@ Item {
             id:area
             anchors.fill: parent
             hoverEnabled: true
-            onPressed: root.clicked();
+            onPressed: if(root.opacity > 0) root.clicked();
         }
      }
 }
