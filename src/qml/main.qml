@@ -32,7 +32,7 @@ Window {
     Rectangle {
         id: topbar
         width: window.width
-        height: 50
+        height: 75
         color: window.mainColor
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -55,8 +55,12 @@ Window {
             anchors.verticalCenter:  parent.verticalCenter
             text: "?"
             onClicked :{
-                if(stackView.currentItem !== page_about)
+                if(stackView.currentItem !== page_about){
                     stackView.replace(page_about)
+                }
+                else{
+                    stackView.replace(page_main, StackView.PopTransition )
+                }
             }
         }
     }
@@ -70,15 +74,20 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         clip: true
 
-        initialItem: PageMain{
+        PageMain{
             id:page_main
+            visible: false
         }
         PageAbout{
             id:page_about
+            visible: false
         }
         PageRun{
             id:page_run
+            visible: false
         }
+
+        initialItem: page_main
     }
 
     /// BOTTOMBAR    

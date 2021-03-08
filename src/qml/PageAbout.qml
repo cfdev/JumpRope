@@ -18,31 +18,36 @@
 
 import QtQuick 2.0
 import QtQuick.Controls 2.13
-import QtQuick.Window 2.14
-
+import QtQuick.Window 2.0
 
 Page {
     id:root
 
     Rectangle{
-        color: "#ffffff"
-        anchors.fill: parent;
-        Text {
-            id: title
-            text: qsTr("About");
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.top: parent.top;
-            anchors.topMargin: 20;
-        }
-        Text {
-            id: textAbout
-            text:
-                "cfdev - www.cfdev.fr<br>" +
-                qsTr("desktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight +"<br>"+ qsTr("Size : ") + root.width + " x " + root.height
+        color: "white"
+        anchors.fill: parent
 
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.top: title.bottom;
-            anchors.topMargin: 20;
+        Column{
+            width: parent.width
+            anchors.centerIn: parent
+            spacing: 2
+
+            Text {
+                id: title
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("<h2>About</h2>");
+            }
+            Text {
+                id: textAbout
+                anchors.horizontalCenter: parent.horizontalCenter
+                text:
+                    "cfdev - www.cfdev.fr<br>" +
+                    qsTr("Author : ") + " Cyril Frausti<br>" +
+                    qsTr("desktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight
+            }
+
+            // Custom Component from C++ SystemInfo
+            // Todo ...
         }
     }
 }

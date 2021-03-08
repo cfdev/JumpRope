@@ -18,32 +18,36 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.13
-import QtQuick.Layouts 1.14
 
 Page {
     id:root
 
-    TimeItem{
-        id:itemWork
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: itemRecup.top
-        name: qsTr("Work");
-        value: 80
-    }
+    Rectangle{
+        color: "white"
+        anchors.fill: parent
 
-    TimeItem{
-        id:itemRecup
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        name: qsTr("Recuperation");
-        value: 5
-    }
+        Column{
+            width: parent.width
+            anchors.centerIn: parent
+            spacing: 2
 
-    CountItem{
-        id:itemCount
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: itemRecup.bottom
-        name: qsTr("Count");
-        value: 2
+            TimeItem{
+                id:itemWork
+                name: qsTr("Work");
+                value: 80
+            }
+
+            TimeItem{
+                id:itemRecup
+                name: qsTr("Recuperation");
+                value: 5
+            }
+
+            CountItem{
+                id:itemCount
+                name: qsTr("Count");
+                value: 2
+            }
+        }
     }
 }

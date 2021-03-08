@@ -18,20 +18,19 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.13
-import QtQuick.Window 2.14
 
 Page {
     id:root
 
     Rectangle{
         color: "#e3b161"
-        anchors.fill: parent;
+        anchors.fill: parent
 
         Text {
-            id: sreenc
-            text: qsTr("desktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight +"<br>"+ qsTr("Size : ") + root.width + " x " + root.height;
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.verticalCenter: parent.verticalCenter;
+            id: text_run
+            text: qsTr("Page Run")
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
         }
 
        /* Rectangle {

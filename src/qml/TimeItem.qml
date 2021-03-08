@@ -18,59 +18,60 @@
 
 import QtQuick 2.0
 
-Rectangle {
+Item {
     id: root
     height: 150
-    color: "red"
-    border.color: "black"
-    border.width: 5
+    width: parent.width
 
     property string name: qsTr("title")
     property int value: 5 // secondes
 
-    Text {
-        color: "#646262"
-        text: name;
-        horizontalAlignment: Text.AlignHCenter
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.bold: true
-        font.pointSize: 22
-        font.family: "Open Sans"
-    }
+    Column{
+        anchors.centerIn: parent
 
-    Text {
-        id: title_value
-        color: "#646262"
-        text: valToTime(value)
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.bold: true
-        font.pointSize: 35
-        font.family: "Open Sans"
-    }
-
-    Btn {
-        id: btn_more
-        anchors.verticalCenter: title_value.verticalCenter
-        anchors.left: title_value.right
-        anchors.leftMargin: 24
-        icon: "qrc:/img/design/btn_more.svg"
-        onClicked: {
-            root.value +=5;
-            if(root.value >= 5940) root.value = 5940;
+        Text {
+            color: "#646262"
+            text: name;
+            horizontalAlignment: Text.AlignHCenter
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.bold: true
+            font.pointSize: 22
+            font.family: "Open Sans"
         }
-    }
 
-    Btn {
-        id: btn_less
-        anchors.verticalCenter: title_value.verticalCenter
-        anchors.right: title_value.left
-        anchors.rightMargin: 24
-        icon: "qrc:/img/design/btn_less.svg"
-        onClicked: {
-            root.value -= 5;
-            if(root.value <5) root.value = 5;
+        Row{
+            spacing: 24
+
+            Btn {
+                id: btn_less
+                anchors.verticalCenter: title_value.verticalCenter
+                icon: "qrc:/img/design/btn_less.svg"
+                onClicked: {
+                    root.value -= 5;
+                    if(root.value <5) root.value = 5;
+                }
+            }
+
+            Text {
+                id: title_value
+                color: "#646262"
+                text: valToTime(value)
+                font.bold: true
+                font.pointSize: 35
+                font.family: "Open Sans"
+            }
+
+            Btn {
+                id: btn_more
+                anchors.verticalCenter: title_value.verticalCenter
+                icon: "qrc:/img/design/btn_more.svg"
+                onClicked: {
+                    root.value +=5;
+                    if(root.value >= 5940) root.value = 5940;
+                }
+            }
+
         }
     }
 
@@ -88,7 +89,6 @@ Rectangle {
         // Return string
         return minutes.toString().padStart(2, "0") + " : " + seconde.toString().padStart(2, "0");
     }
-
 }
 
 

@@ -20,59 +20,57 @@ import QtQuick 2.0
 
 Item {
     id: root
-    height: 200
+    height: 150
+    width: parent.width
+
     property string name: qsTr("title")
     property int value: 1
 
-    Text {
-        x: -9
-        y: 18
-        color: "#646262"
-        text: name;
-        horizontalAlignment: Text.AlignHCenter
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.bold: true
-        font.pointSize: 22
-        font.family: "Open Sans"
-    }
+    Column{
+        anchors.centerIn: parent
 
-    Text {
-        id: title_value
-        x: -12
-        y: 92
-        color: "#646262"
-        // prefix Zeros
-        // Since ES2017 padding to a minimum length can be done simply with String.prototype.padStart and String.prototype.padEnd:
-        text:   value.toString().padStart(3, "0");
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.bold: true
-        font.pointSize: 35
-        font.family: "Open Sans"
-    }
-
-    Btn {
-        id: btn_more
-        anchors.verticalCenter: title_value.verticalCenter
-        anchors.left: title_value.right
-        anchors.leftMargin: 32
-        y: 99
-        icon: "qrc:/img/design/btn_more.svg"
-        onClicked: {
-            if(value<100) root.value++;
+        Text {
+            color: "#646262"
+            text: name;
+            horizontalAlignment: Text.AlignHCenter
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.bold: true
+            font.pointSize: 22
+            font.family: "Open Sans"
         }
-    }
 
-    Btn {
-        id: btn_less
-        anchors.verticalCenter: title_value.verticalCenter
-        anchors.right: title_value.left
-        anchors.rightMargin: 32
-        y: 99
-        icon: "qrc:/img/design/btn_less.svg"
-        onClicked: {
-            if(value>1) root.value--;
+        Row{
+            spacing: 24
+
+            Btn {
+                id: btn_less
+                icon: "qrc:/img/design/btn_less.svg"
+                onClicked: {
+                    if(value>1) root.value--;
+                }
+            }
+
+            Text {
+                id: title_value
+                color: "#646262"
+                // prefix Zeros
+                // Since ES2017 padding to a minimum length can be done simply with String.prototype.padStart and String.prototype.padEnd:
+                text:   value.toString().padStart(3, "0");
+                font.bold: true
+                font.pointSize: 35
+                font.family: "Open Sans"
+            }
+
+            Btn {
+                id: btn_more
+                icon: "qrc:/img/design/btn_more.svg"
+                onClicked: {
+                    if(value<100) root.value++;
+                }
+            }
+
+
         }
     }
 }
