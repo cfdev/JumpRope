@@ -22,31 +22,56 @@ import QtQuick.Controls 2.13
 Page {
     id:root
 
+    // Todo slot to pause animation
+    // Todo slot to resume animation
+
+
     Rectangle{
-        color: "#e3b161"
+        color: "#ffffff"
         anchors.fill: parent
 
         Text {
-            id: text_run
-            text: qsTr("Page Run")
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            id: text_value
+            text: "00 : 00"
+            anchors.centerIn: parent
+            font.bold: true
+            font.pointSize: 35
+            font.family: "Open Sans"
+            color: textColor
         }
 
-       /* Rectangle {
-            id: _animeTest
-            anchors.horizontalCenter: parent.horizontalCenter;
-            anchors.verticalCenter: parent.verticalCenter;
-            width: 50
-            height: 50
-            color: "lightsteelblue"
-            RotationAnimator on rotation {
+
+        Rectangle {
+            id: rect_anim
+            width: 300
+            height: 300
+            anchors.centerIn: parent
+            radius: width
+            border.color: mainColor
+            border.width: 4
+            color: "transparent"
+
+            Rectangle {
+                id: rect_mark
+                x: 85
+                y: 0
+                width: 25
+                height: 25
+                radius: width
+                color: mainColor
+            }
+
+            RotationAnimation{
+                id: r_anim
+                target: rect_anim
                 loops: Animation.Infinite
-                from: 0;
-                to: 360;
+                from:0
+                to:360
+                direction: RotationAnimation.Clockwise
                 duration: 2000
                 running: true
             }
-        }*/
+
+        }
     }
 }
