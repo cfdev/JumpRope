@@ -26,7 +26,9 @@ Window {
     width: 540  //1080
     height: 960 //1920
     title: qsTr("Jump Rope")
+
     property color mainColor:"#00e9cd"
+    property color textColor:"#646262"
 
     /// TOPBAR
     Rectangle {
