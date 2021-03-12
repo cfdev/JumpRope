@@ -20,8 +20,14 @@ import QtQuick 2.0
 import QtQuick.Controls 2.13
 import QtQuick.Window 2.0
 
+import cfdev.SystemInfo 1.0
+
 Page {
     id:root
+
+    SystemInfo{
+        id:sysInfo
+    }
 
     Rectangle{
         color: "white"
@@ -40,14 +46,19 @@ Page {
             Text {
                 id: textAbout
                 anchors.horizontalCenter: parent.horizontalCenter
-                text:
+                text:{
+                   // if(systeminfo != null){
+                    qsTr("Version : ") + Qt.application.version + "<br><br>" +
                     "cfdev - www.cfdev.fr<br>" +
-                    qsTr("Author : ") + " Cyril Frausti<br>" +
-                    qsTr("desktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight
-            }
+                    qsTr("Author : ") + " Cyril Frausti<br><br>" +
+                    qsTr("DesktopAvailable : ") + Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight + "<br>"+
 
-            // Custom Component from C++ SystemInfo
-            // Todo ...
+                    qsTr("Platform Build : ") + sysInfo.qtBuild() + "<br>Qt " + sysInfo.qtVersion() + "<br>"+
+                    qsTr("Device Name: ") + sysInfo.machineHostName() +"<br>"+
+                    qsTr("Device Os: ") + sysInfo.machineHostOs()
+
+                }
+            }
         }
     }
 }

@@ -21,6 +21,9 @@
 #include <QFontDatabase>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+#include "systeminfo.h"
 
 ///
 /// \brief main
@@ -30,22 +33,37 @@
 ///
 int main(int argc, char *argv[])
 {
+  // Application attributes
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+  // Register a type in QML of SystemInfo class
+  qmlRegisterType<SystemInfo>("cfdev.SystemInfo", 1, 0, "SystemInfo");
+
+  // Application
   QGuiApplication app(argc, argv);
 
   // Fonts
   if (QFontDatabase::addApplicationFont(":/fonts/design/fonts/OpenSans-SemiBold.ttf"))
     qCritical() << "Fail to add font ";
 
-  // QML
+  // QML Engine
   QQmlApplicationEngine engine;
+
+  // The URL of the QML main file from ressource
   const QUrl url(QStringLiteral("qrc:/src/qml/main.qml"));
-  QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-      &app, [url](QObject *obj, const QUrl &objUrl) {
+
+  // Connecting signal and slot for making sure the object and url match
+  QObject::connect(
+      &engine, &QQmlApplicationEngine::objectCreated, &app,
+      [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
           QCoreApplication::exit(-1);
-      }, Qt::QueuedConnection);
+      },
+      Qt::QueuedConnection);
+
+  // The engine load QML file
   engine.load(url);
 
+  // Run application
   return QGuiApplication::exec();
 }

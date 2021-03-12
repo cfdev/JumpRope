@@ -57,7 +57,7 @@ Window {
             anchors.verticalCenter:  parent.verticalCenter
             text: "?"
             onClicked :{
-                if(stackView.currentItem !== page_about){
+               if(stackView.currentItem !== page_about){
                     stackView.replace(page_about)
                 }
                 else{

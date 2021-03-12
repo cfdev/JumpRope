@@ -14,7 +14,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 
+# The application version (major.minor.patch)
+VERSION = 0.1.0
 
+# Qt components
 QT += quick svg
 
 CONFIG += c++11
@@ -30,7 +33,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+    src/systeminfo.cpp
 
 RESOURCES += qml.qrc
 
@@ -59,3 +63,6 @@ DISTFILES += \
     android/res/values/libs.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+HEADERS += \
+    src/systeminfo.h
