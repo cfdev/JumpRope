@@ -24,6 +24,7 @@
 #include <QQmlContext>
 
 #include "systeminfo.h"
+#include "timercount.h"
 
 ///
 /// \brief main
@@ -48,6 +49,10 @@ int main(int argc, char *argv[])
 
   // QML Engine
   QQmlApplicationEngine engine;
+
+  // Add to the root context
+  TimerCount mTimer;
+  engine.rootContext()->setContextProperty("timerCount", &mTimer);
 
   // The URL of the QML main file from ressource
   const QUrl url(QStringLiteral("qrc:/src/qml/main.qml"));

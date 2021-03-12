@@ -18,13 +18,35 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.13
+import "../js/time.js" as Time
 
 Page {
     id:root
 
-    // Todo slot to pause animation
-    // Todo slot to resume animation
+    function stopAnimation(){
+        r_anim.stop()
+    }
 
+    function runAnimation(){
+        if(r_anim.paused){
+            r_anim.resume()
+        }
+        else{
+            r_anim.start();
+        }
+    }
+
+    function pauseAnimation(){
+        r_anim.pause()
+    }
+
+    Connections{
+        target: timerCount
+        onTimeValue :{
+            text_value.text = Time.valToTime(time) // getData From c++ Signal
+        }
+        onFinished: pauseAnimation()
+    }
 
     Rectangle{
         color: "#ffffff"
@@ -69,9 +91,7 @@ Page {
                 to:360
                 direction: RotationAnimation.Clockwise
                 duration: 2000
-                running: true
             }
-
         }
     }
 }

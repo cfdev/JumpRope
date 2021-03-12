@@ -15,7 +15,7 @@
 #    along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 
 # The application version (major.minor.patch)
-VERSION = 0.1.0
+VERSION = 0.0.1
 
 # Qt components
 QT += quick svg
@@ -34,7 +34,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += src/main.cpp \
-    src/systeminfo.cpp
+    src/systeminfo.cpp \
+    src/timercount.cpp
 
 RESOURCES += qml.qrc
 
@@ -65,4 +66,5 @@ DISTFILES += \
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 HEADERS += \
-    src/systeminfo.h
+    src/systeminfo.h \
+    src/timercount.h

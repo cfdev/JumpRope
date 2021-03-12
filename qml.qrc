@@ -9,6 +9,7 @@
         <file>src/qml/Btn.qml</file>
         <file>src/qml/CountItem.qml</file>
         <file>src/qml/PageAbout.qml</file>
+        <file>src/js/time.js</file>
     </qresource>
     <qresource prefix="/img">
         <file>design/btn_play.svg</file>

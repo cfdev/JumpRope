@@ -107,12 +107,15 @@ Window {
             x: 50
             anchors.verticalCenter:  parent.verticalCenter
             onClicked :{
-                console.log(" Stop");
+                console.log(" Stop")
                 if(stackView.currentItem !== page_main)
-                    stackView.replace(page_main, StackView.PopTransition);
-                btnPlay.resetState();
-                btnStop.hide();
+                    stackView.replace(page_main, StackView.PopTransition)
+                btnPlay.resetState()
+                btnStop.hide()
                 btnAbout.enabled = true
+                // stop timer
+                timerCount.stop()
+                page_run.stopAnimation()
             }
         }
 
@@ -121,14 +124,22 @@ Window {
             anchors.verticalCenter:  parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             onRun :{
-                console.log(" run");
-                if(stackView.currentItem !== page_run)
-                    stackView.replace(page_run, StackView.PushTransition);
-                btnStop.show();
+                console.log(" run");                
+                if(stackView.currentItem !== page_run){
+                    stackView.replace(page_run, StackView.PushTransition)
+                    timerCount.setWork(page_main.workTime)
+                }
+                btnStop.show()
                 btnAbout.enabled = false
+                // Start timer
+                timerCount.run()
+                page_run.runAnimation()
             }
             onWait :{
-                console.log("he Wait :-) ");
+                console.log("he Wait :-) ")
+                // wait timer
+                timerCount.wait()
+                page_run.pauseAnimation()
             }
         }
     }

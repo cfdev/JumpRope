@@ -16,39 +16,17 @@
     along with JumpRope.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.13
+function valToTime(val)
+{
+    // Get minutes
+    var minutes = (val/60).toString().split(".")[0];
 
-Page {
-    id:root
-    property var workTime: itemWork.value // property  binding
+    // Get secondes
+    var seconde = 0;
+    var dec = "0." +(val/60).toString().split(".")[1];
+    if(Number(dec) > 0) seconde =  Number(dec) * 60;
+    seconde = seconde.toFixed(); // Round
 
-    Rectangle{
-        color: "white"
-        anchors.fill: parent
-
-        Column{
-            width: parent.width
-            anchors.centerIn: parent
-            spacing: 2
-
-            TimeItem{
-                id:itemWork
-                name: qsTr("Work");
-                value: 80
-            }
-
-            TimeItem{
-                id:itemRecup
-                name: qsTr("Recuperation");
-                value: 5
-            }
-
-            CountItem{
-                id:itemCount
-                name: qsTr("Count");
-                value: 2
-            }
-        }
-    }
+    // Return string
+    return minutes.toString().padStart(2, "0") + " : " + seconde.toString().padStart(2, "0");
 }

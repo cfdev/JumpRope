@@ -17,6 +17,7 @@
 */
 
 import QtQuick 2.0
+import "../js/time.js" as Time
 
 Item {
     id: root
@@ -56,7 +57,7 @@ Item {
             Text {
                 id: title_value
                 color: "#646262"
-                text: valToTime(value)
+                text: Time.valToTime(value)
                 font.bold: true
                 font.pointSize: 35
                 font.family: "Open Sans"
@@ -73,21 +74,6 @@ Item {
             }
 
         }
-    }
-
-    function valToTime(val)
-    {
-        // Get minutes
-        var minutes = (val/60).toString().split(".")[0];
-
-        // Get secondes
-        var seconde = 0;
-        var dec = "0." +(val/60).toString().split(".")[1];
-        if(Number(dec) > 0) seconde =  Number(dec) * 60;
-        seconde = seconde.toFixed(); // Round
-
-        // Return string
-        return minutes.toString().padStart(2, "0") + " : " + seconde.toString().padStart(2, "0");
     }
 }
 
