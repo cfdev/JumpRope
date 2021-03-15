@@ -18,6 +18,7 @@
 
 #include "timercount.h"
 #include <QDebug>
+#include <QMediaPlayer>
 
 //==============================================================
 ///
@@ -26,10 +27,15 @@
 ///
 TimerCount::TimerCount(QObject *parent) : QObject(parent) {
   _timer = new QTimer(this);
-  _time = 0;
+  _wTime = 0;
+  _remainingTime = 0;
+  _cycle = 0;
   _workTime = 5;
   _RecupTime = 5;
   _count = 1;
+  _countMax = 1;
+
+  _player = new QMediaPlayer(this);
 
   _timer->setInterval(1000);
   connect(_timer, &QTimer::timeout, this, &TimerCount::timeOut);
@@ -37,28 +43,65 @@ TimerCount::TimerCount(QObject *parent) : QObject(parent) {
 
 //==============================================================
 void TimerCount::timeOut() {
-  if (_time > 0) {
-    _time--;
+  if (_wTime > 0) {
+    _wTime--;
+    if (_wTime <= 3) {
+      if (_wTime == 0) {
+        _player->setMedia(QUrl("qrc:/sounds/sound/bip2.mp3"));
+        _player->play();
+      } else {
+        _player->setMedia(QUrl("qrc:/sounds/sound/bip1.mp3"));
+        _player->play();
+      }
+    }
   }
 
-  emit timeValue(QVariant(_time));
+  _timer->setInterval(1000);
+  emit timeValue(QVariant(_wTime));
 
-  if (_time == 0) {
-    _timer->stop();
-    emit finished();
+  if (_wTime == 0) {
+    _cycle++;
+
+    // Cycle Recuperation
+    if (_cycle == 1) {
+      _wTime = _RecupTime + 1;
+      emit typeSession(QVariant(tr("recuperation")));
+    }
+
+    // New Cycle Work or finish ?
+    else if (_cycle >= 2) {
+      _cycle = 0;
+      if (_count >= _countMax) {
+        _timer->stop();
+        emit finished();
+      } else {
+        _count++;
+        _wTime = _workTime + 1;
+        emit typeSession(QVariant(tr("work")));
+        emit countValue(QVariant(_count), QVariant(_countMax));
+      }
+    }
   }
 }
 
 //==============================================================
 void TimerCount::run() {
   qInfo() << "TimerCount run";
-  emit timeValue(QVariant(_time));
-  _timer->start();
+
+  emit timeValue(QVariant(_wTime));
+  emit typeSession(QVariant(tr("work")));
+  emit countValue(QVariant(_count), QVariant(_countMax));
+
+  if (_remainingTime > 0)
+    _timer->start(_remainingTime);
+  else
+    _timer->start();
 }
 
 //==============================================================
 void TimerCount::wait() {
   qInfo() << "TimerCount wait";
+  _remainingTime = _timer->remainingTime();
   _timer->stop();
 }
 
@@ -67,5 +110,7 @@ void TimerCount::stop() {
   qInfo() << "TimerCount stop";
   _timer->stop();
   emit finished();
-  _time = _workTime;
+  _wTime = _workTime;
+  _remainingTime = 0;
+  _cycle = 0;
 }

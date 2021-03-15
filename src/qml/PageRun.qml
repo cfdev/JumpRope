@@ -34,39 +34,83 @@ Page {
         else{
             r_anim.start();
         }
+
     }
 
     function pauseAnimation(){
+        rect_anim.border.color = "#e8a600"
         r_anim.pause()
     }
 
     Connections{
         target: timerCount
+
+        // Received Data From C++ Signal
         onTimeValue :{
-            text_value.text = Time.valToTime(time) // getData From c++ Signal
+            text_value.text = Time.valToTime(time)
         }
-        onFinished: pauseAnimation()
+        onTypeSession:{
+            text_type.text = type
+            rect_anim.border.color = (type === qsTr("work")) ? mainColor : "#008fe8"
+        }
+        onCountValue:{
+            text_count.text = count + " / " + max
+        }
+        onFinished:{
+            stopAnimation()
+        }
     }
 
     Rectangle{
         color: "#ffffff"
         anchors.fill: parent
 
-        Text {
-            id: text_value
-            text: "00 : 00"
+        Column{
+            id:colText
             anchors.centerIn: parent
-            font.bold: true
-            font.pointSize: 35
-            font.family: "Open Sans"
-            color: textColor
+
+            Text {
+                id: text_type
+                text: "..."
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenterOffset: 0
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+                font.pointSize: 18
+                font.family: "Open Sans"
+                color: textColor
+            }
+
+            Text {
+                id: text_value
+                text: "00 : 00"
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenterOffset: 0
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+                font.pointSize: 35
+                font.family: "Open Sans"
+                color: textColor
+            }
+
+            Text {
+                id: text_count
+                text: "x / x"
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenterOffset: 0
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+                font.pointSize: 18
+                font.family: "Open Sans"
+                color: textColor
+            }
         }
 
 
         Rectangle {
             id: rect_anim
-            width: 300
-            height: 300
+            width: colText.width + 100
+            height: colText.width + 100
             anchors.centerIn: parent
             radius: width
             border.color: mainColor
@@ -75,7 +119,7 @@ Page {
 
             Rectangle {
                 id: rect_mark
-                x: 85
+                x: 0
                 y: 0
                 width: 25
                 height: 25

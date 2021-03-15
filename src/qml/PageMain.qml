@@ -21,7 +21,10 @@ import QtQuick.Controls 2.13
 
 Page {
     id:root
-    property var workTime: itemWork.value // property  binding
+    // properties  binding
+    property var workTime: itemWork.value
+    property var recuptTime: itemRecup.value
+    property var count: itemCount.value
 
     Rectangle{
         color: "white"

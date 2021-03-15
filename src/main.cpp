@@ -32,8 +32,8 @@
 /// \param argv
 /// \return
 ///
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+
   // Application attributes
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 

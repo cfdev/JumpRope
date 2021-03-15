@@ -128,6 +128,8 @@ Window {
                 if(stackView.currentItem !== page_run){
                     stackView.replace(page_run, StackView.PushTransition)
                     timerCount.setWork(page_main.workTime)
+                    timerCount.setRecup(page_main.recuptTime)
+                    timerCount.setCount(page_main.count)
                 }
                 btnStop.show()
                 btnAbout.enabled = false

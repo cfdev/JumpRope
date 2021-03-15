@@ -1,18 +1,43 @@
 #ifndef TimerCount_H
 #define TimerCount_H
+#pragma once
 
+#include <QMediaPlayer>
 #include <QObject>
 #include <QTimer>
 #include <QVariant>
 
+///
+/// \brief The TimerCount class
+///
 class TimerCount : public QObject {
   Q_OBJECT
 public:
   explicit TimerCount(QObject *parent = nullptr);
 
 signals:
+  ///
+  /// \brief timeValue
+  /// \param time
+  ///
   void timeValue(QVariant time);
-  void countValue(QVariant count);
+
+  ///
+  /// \brief countValue
+  /// \param count
+  /// \param max
+  ///
+  void countValue(QVariant count, QVariant max);
+
+  ///
+  /// \brief typeSession
+  /// \param type
+  ///
+  void typeSession(QVariant type);
+
+  ///
+  /// \brief finished
+  ///
   void finished();
 
 public slots:
@@ -25,7 +50,7 @@ public slots:
     int t = time.toInt(&ok);
     if (ok) {
       _workTime = t;
-      _time = _workTime;
+      _wTime = _workTime;
     }
   }
 
@@ -49,7 +74,8 @@ public slots:
     bool ok = false;
     int t = count.toInt(&ok);
     if (ok) {
-      _count = t;
+      _count = 1;
+      _countMax = t;
     }
   }
 
@@ -76,9 +102,13 @@ private slots:
 
 private:
   QTimer *_timer;
-  int _time;
+  int _wTime;
   int _workTime, _RecupTime;
-  int _count;
+  int _cycle;
+  int _count, _countMax;
+  int _remainingTime;
+
+  QMediaPlayer *_player;
 };
 
 #endif // TimerCount_H

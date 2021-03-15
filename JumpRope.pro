@@ -18,7 +18,7 @@
 VERSION = 0.0.1
 
 # Qt components
-QT += quick svg
+QT += quick svg multimedia
 
 CONFIG += c++11
 

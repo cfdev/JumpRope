@@ -23,4 +23,8 @@
         <file>design/fonts/OpenSans-Regular.ttf</file>
         <file>design/fonts/OpenSans-SemiBold.ttf</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>sound/bip1.mp3</file>
+        <file>sound/bip2.mp3</file>
+    </qresource>
 </RCC>
