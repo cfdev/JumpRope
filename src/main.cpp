@@ -23,6 +23,9 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <QAndroidJniEnvironment>
+#include <QtAndroid>
+
 #include "systeminfo.h"
 #include "timercount.h"
 
@@ -39,6 +42,24 @@ int main(int argc, char *argv[]) {
 
   // Register a type in QML of SystemInfo class
   qmlRegisterType<SystemInfo>("cfdev.SystemInfo", 1, 0, "SystemInfo");
+
+  // Android
+  QAndroidJniObject activity = QtAndroid::androidActivity();
+  if (activity.isValid()) {
+
+    // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+    if (window.isValid()) {
+      const int FLAG_KEEP_SCREEN_ON = 128;
+      window.callMethod<void>("addFlags", "(I)V", FLAG_KEEP_SCREEN_ON);
+    }
+
+    // Clear any possible pending exceptions from FLAG_KEEP_SCREEN_ON.
+    QAndroidJniEnvironment env;
+    if (env->ExceptionCheck()) {
+      env->ExceptionClear();
+    }
+  }
 
   // Application
   QGuiApplication app(argc, argv);

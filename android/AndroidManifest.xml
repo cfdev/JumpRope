@@ -15,6 +15,7 @@
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="JumpRope" android:extractNativeLibs="true">
+
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="JumpRope" android:screenOrientation="portrait" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -64,7 +65,7 @@
                           application still try to draw after
                           "applicationStateChanged(Qt::ApplicationSuspended)"
                           signal is sent! -->
-            <meta-data android:name="android.app.background_running" android:value="false"/>
+			<meta-data android:name="android.app.background_running" android:value="false"/>
             <!-- Background running -->
 
             <!-- auto screen scale factor -->
@@ -86,6 +87,9 @@
 
     </application>
 
+
+
 <!-- %%INSERT_PERMISSIONS -->
     <!-- %%INSERT_FEATURES -->
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
 </manifest>

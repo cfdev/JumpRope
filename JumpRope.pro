@@ -20,6 +20,10 @@ VERSION = 0.0.1
 # Qt components
 QT += quick svg multimedia
 
+android{
+    QT += androidextras
+}
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -36,6 +40,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += src/main.cpp \
     src/systeminfo.cpp \
     src/timercount.cpp
+
+HEADERS += \
+    src/systeminfo.h \
+    src/timercount.h
 
 RESOURCES += qml.qrc
 
@@ -64,7 +72,3 @@ DISTFILES += \
     android/res/values/libs.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-
-HEADERS += \
-    src/systeminfo.h \
-    src/timercount.h

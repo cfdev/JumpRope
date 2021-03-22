@@ -12,6 +12,7 @@
 ///
 class TimerCount : public QObject {
   Q_OBJECT
+
 public:
   explicit TimerCount(QObject *parent = nullptr);
 
@@ -45,39 +46,19 @@ public slots:
   /// \brief setWork
   /// \param time
   ///
-  void setWork(QVariant time) {
-    bool ok = false;
-    int t = time.toInt(&ok);
-    if (ok) {
-      _workTime = t;
-      _wTime = _workTime;
-    }
-  }
+  void setWork(QVariant time);
 
   ///
   /// \brief setRecup
   /// \param time
   ///
-  void setRecup(QVariant time) {
-    bool ok = false;
-    int t = time.toInt(&ok);
-    if (ok) {
-      _RecupTime = t;
-    }
-  }
+  void setRecup(QVariant time);
 
   ///
   /// \brief setCount
   /// \param count
   ///
-  void setCount(QVariant count) {
-    bool ok = false;
-    int t = count.toInt(&ok);
-    if (ok) {
-      _count = 1;
-      _countMax = t;
-    }
-  }
+  void setCount(QVariant count);
 
   ///
   /// \brief run

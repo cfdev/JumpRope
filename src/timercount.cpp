@@ -114,3 +114,32 @@ void TimerCount::stop() {
   _remainingTime = 0;
   _cycle = 0;
 }
+
+//==============================================================
+void TimerCount::setWork(QVariant time) {
+  bool ok = false;
+  int t = time.toInt(&ok);
+  if (ok) {
+    _workTime = t;
+    _wTime = _workTime;
+  }
+}
+
+//==============================================================
+void TimerCount::setRecup(QVariant time) {
+  bool ok = false;
+  int t = time.toInt(&ok);
+  if (ok) {
+    _RecupTime = t;
+  }
+}
+
+//==============================================================
+void TimerCount::setCount(QVariant count) {
+  bool ok = false;
+  int t = count.toInt(&ok);
+  if (ok) {
+    _count = 1;
+    _countMax = t;
+  }
+}
