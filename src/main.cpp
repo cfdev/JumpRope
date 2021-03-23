@@ -20,8 +20,10 @@
 #include <QDir>
 #include <QFontDatabase>
 #include <QGuiApplication>
+#include <QLibraryInfo>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QTranslator>
 
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniEnvironment>
@@ -67,6 +69,21 @@ int main(int argc, char *argv[]) {
 
   // Application
   QGuiApplication app(argc, argv);
+
+  // Translation application
+  QTranslator translatorApp;
+  QString locale = QLocale::system().name();
+  int pos = locale.indexOf('_');
+  if (pos > 0) {
+    locale = locale.mid(0, pos);
+  }
+
+  // Load the tranduction file
+  if (!translatorApp.load(":/lang/JumpRope_" + locale)) {
+    // if error
+    qCritical() << "Fail to load traduction file, Use the english language instead ";
+  }
+  app.installTranslator(&translatorApp);
 
   // Fonts
   if (QFontDatabase::addApplicationFont(":/fonts/design/fonts/OpenSans-SemiBold.ttf"))

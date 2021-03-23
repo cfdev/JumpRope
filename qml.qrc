@@ -10,6 +10,10 @@
         <file>src/qml/CountItem.qml</file>
         <file>src/qml/PageAbout.qml</file>
         <file>src/js/time.js</file>
+	<file>lang/JumpRope_fr.qm</file>
+	<file>sounds/bip1.mp3</file>
+	<file>sounds/bip2.mp3</file>
+	<file>sounds/end.mp3</file>
     </qresource>
     <qresource prefix="/img">
         <file>design/btn_play.svg</file>
@@ -23,9 +27,5 @@
         <file>design/fonts/OpenSans-Bold.ttf</file>
         <file>design/fonts/OpenSans-Regular.ttf</file>
         <file>design/fonts/OpenSans-SemiBold.ttf</file>
-    </qresource>
-    <qresource prefix="/sounds">
-        <file>sound/bip1.mp3</file>
-        <file>sound/bip2.mp3</file>
     </qresource>
 </RCC>

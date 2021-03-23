@@ -14,37 +14,37 @@
     <message>
         <location filename="src/qml/PageAbout.qml" line="44"/>
         <source>&lt;h2&gt;About&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;A propos&lt;/h2&gt;</translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="51"/>
         <source>Version : </source>
-        <translation type="unfinished"></translation>
+        <translation>Version : </translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="53"/>
         <source>Author : </source>
-        <translation type="unfinished"></translation>
+        <translation>Auteur : </translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="54"/>
         <source>DesktopAvailable : </source>
-        <translation type="unfinished"></translation>
+        <translation>Taille disponible : </translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="56"/>
         <source>Platform Build : </source>
-        <translation type="unfinished"></translation>
+        <translation>Plateforme : </translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="57"/>
         <source>Device Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de l&apos;appareil: </translation>
     </message>
     <message>
         <location filename="src/qml/PageAbout.qml" line="58"/>
         <source>Device Os: </source>
-        <translation type="unfinished"></translation>
+        <translation>Os: </translation>
     </message>
 </context>
 <context>
@@ -52,17 +52,17 @@
     <message>
         <location filename="src/qml/PageMain.qml" line="40"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Travail</translation>
     </message>
     <message>
         <location filename="src/qml/PageMain.qml" line="46"/>
         <source>Recuperation</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération</translation>
     </message>
     <message>
         <location filename="src/qml/PageMain.qml" line="52"/>
         <source>Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Cycle</translation>
     </message>
 </context>
 <context>
@@ -70,22 +70,22 @@
     <message>
         <location filename="src/qml/PageRun.qml" line="60"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Travail</translation>
     </message>
     <message>
         <location filename="src/qml/PageRun.qml" line="61"/>
         <source>Warm-up</source>
-        <translation type="unfinished"></translation>
+        <translation>Prêt ?</translation>
     </message>
     <message>
         <location filename="src/qml/PageRun.qml" line="62"/>
         <source>Recuperation</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération</translation>
     </message>
     <message>
         <location filename="src/qml/PageRun.qml" line="63"/>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Fini</translation>
     </message>
 </context>
 <context>
@@ -93,12 +93,12 @@
     <message>
         <location filename="src/systeminfo.cpp" line="30"/>
         <source>Build </source>
-        <translation type="unfinished"></translation>
+        <translation>Construction </translation>
     </message>
     <message>
         <location filename="src/systeminfo.cpp" line="30"/>
         <source>Work on </source>
-        <translation type="unfinished"></translation>
+        <translation>Fonctionne avec </translation>
     </message>
 </context>
 <context>
@@ -116,22 +116,22 @@
         <location filename="src/timercount.cpp" line="96"/>
         <location filename="src/timercount.cpp" line="112"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Travail</translation>
     </message>
     <message>
         <location filename="src/timercount.cpp" line="80"/>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Fini</translation>
     </message>
     <message>
         <location filename="src/timercount.cpp" line="83"/>
         <source>Recuperation</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération</translation>
     </message>
     <message>
         <location filename="src/timercount.cpp" line="110"/>
         <source>Warm-up</source>
-        <translation type="unfinished"></translation>
+        <translation>Prêt ?</translation>
     </message>
 </context>
 <context>

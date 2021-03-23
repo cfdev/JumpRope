@@ -48,7 +48,7 @@ HEADERS += \
 RESOURCES += qml.qrc
 
 TRANSLATIONS += \
-    JumpRope_fr_FR.ts
+    lang/JumpRope_fr.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

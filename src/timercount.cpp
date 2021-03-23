@@ -53,7 +53,7 @@ void TimerCount::timeOut() {
     emit timeValue(QVariant(_wTime));
     if (_wTime <= 3) {
       if (_wTime == 0) {
-        _player->setMedia(QUrl("qrc:/sounds/sound/bip2.mp3"));
+        _player->setMedia(QUrl("qrc:/sounds/bip2.mp3"));
         _player->play();
         // if warm-up session
         if (_warmup) {
@@ -63,7 +63,7 @@ void TimerCount::timeOut() {
           return;
         }
       } else {
-        _player->setMedia(QUrl("qrc:/sounds/sound/bip1.mp3"));
+        _player->setMedia(QUrl("qrc:/sounds/bip1.mp3"));
         _player->play();
       }
     }
@@ -78,6 +78,8 @@ void TimerCount::timeOut() {
         _timer->stop();
         emit finished();
         emit typeSession(QVariant(tr("Finished")));
+        _player->setMedia(QUrl("qrc:/sounds/end.mp3"));
+        _player->play();
       } else {
         _wTime = _RecupTime + 1;
         emit typeSession(QVariant(tr("Recuperation")));
