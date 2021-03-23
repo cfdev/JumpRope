@@ -50,12 +50,18 @@ Window {
             font.family: "Open Sans"
         }
 
-        RoundButton {
+        Button {
             id: btnAbout
             anchors.right: topbar.right
             anchors.rightMargin: 10
             anchors.verticalCenter:  parent.verticalCenter
             text: "?"
+            //font.bold: true
+
+            background: Rectangle {
+                    color: "#ffffff"
+                }
+
             onClicked :{
                if(stackView.currentItem !== page_about){
                     stackView.replace(page_about)

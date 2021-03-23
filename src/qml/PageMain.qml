@@ -38,13 +38,13 @@ Page {
             TimeItem{
                 id:itemWork
                 name: qsTr("Work");
-                value: 80
+                value: 30
             }
 
             TimeItem{
                 id:itemRecup
                 name: qsTr("Recuperation");
-                value: 5
+                value: 10
             }
 
             CountItem{

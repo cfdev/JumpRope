@@ -23,8 +23,10 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#ifdef Q_OS_ANDROID
 #include <QAndroidJniEnvironment>
 #include <QtAndroid>
+#endif
 
 #include "systeminfo.h"
 #include "timercount.h"
@@ -43,7 +45,8 @@ int main(int argc, char *argv[]) {
   // Register a type in QML of SystemInfo class
   qmlRegisterType<SystemInfo>("cfdev.SystemInfo", 1, 0, "SystemInfo");
 
-  // Android
+  // If android
+#ifdef Q_OS_ANDROID
   QAndroidJniObject activity = QtAndroid::androidActivity();
   if (activity.isValid()) {
 
@@ -60,6 +63,7 @@ int main(int argc, char *argv[]) {
       env->ExceptionClear();
     }
   }
+#endif
 
   // Application
   QGuiApplication app(argc, argv);

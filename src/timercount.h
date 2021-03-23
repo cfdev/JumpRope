@@ -83,6 +83,7 @@ private slots:
 
 private:
   QTimer *_timer;
+  bool _warmup;
   int _wTime;
   int _workTime, _RecupTime;
   int _cycle;

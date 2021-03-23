@@ -23,6 +23,12 @@ import "../js/time.js" as Time
 Page {
     id:root
 
+    property color workColor: mainColor
+    property color warmupColor: "#db2c11"
+    property color recupColor: "#008fe8"
+    property color pauseColor: "#e8a600"
+    property color finishedColor: "#cccccc"
+
     function stopAnimation(){
         r_anim.stop()
     }
@@ -38,7 +44,7 @@ Page {
     }
 
     function pauseAnimation(){
-        rect_anim.border.color = "#e8a600"
+        rect_anim.border.color = pauseColor
         r_anim.pause()
     }
 
@@ -51,7 +57,11 @@ Page {
         }
         onTypeSession:{
             text_type.text = type
-            rect_anim.border.color = (type === qsTr("work")) ? mainColor : "#008fe8"
+            if(type === qsTr("Work")) rect_anim.border.color = workColor
+            else if(type === qsTr("Warm-up")) rect_anim.border.color = warmupColor
+            else if(type === qsTr("Recuperation")) rect_anim.border.color = recupColor
+            else if(type === qsTr("Finished")) rect_anim.border.color = finishedColor
+            else rect_anim.border.color = mainColor
         }
         onCountValue:{
             text_count.text = count + " / " + max
@@ -64,6 +74,17 @@ Page {
     Rectangle{
         color: "#ffffff"
         anchors.fill: parent
+
+        Image {
+            id: image
+            width: 125
+            height: 125
+            anchors.top: parent.top
+            anchors.topMargin: 10
+            source: "qrc:/img/design/rope.svg"
+            fillMode: Image.PreserveAspectFit
+            rotation: -25
+        }
 
         Column{
             id:colText
@@ -137,5 +158,8 @@ Page {
                 duration: 2000
             }
         }
+
     }
 }
+
+

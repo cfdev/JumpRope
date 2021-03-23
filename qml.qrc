@@ -17,6 +17,7 @@
         <file>design/btn_stop.svg</file>
         <file>design/btn_less.svg</file>
         <file>design/btn_more.svg</file>
+        <file>design/rope.svg</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>design/fonts/OpenSans-Bold.ttf</file>

@@ -18,7 +18,6 @@
 
 #include "timercount.h"
 #include <QDebug>
-#include <QMediaPlayer>
 
 //==============================================================
 ///
@@ -26,7 +25,7 @@
 /// \param parent
 ///
 TimerCount::TimerCount(QObject *parent) : QObject(parent) {
-  _timer = new QTimer(this);
+  _warmup = false; // seconds for warm-up
   _wTime = 0;
   _remainingTime = 0;
   _cycle = 0;
@@ -36,19 +35,33 @@ TimerCount::TimerCount(QObject *parent) : QObject(parent) {
   _countMax = 1;
 
   _player = new QMediaPlayer(this);
+  _player->setVolume(100);
 
+  _timer = new QTimer(this);
   _timer->setInterval(1000);
   connect(_timer, &QTimer::timeout, this, &TimerCount::timeOut);
 }
 
 //==============================================================
 void TimerCount::timeOut() {
+  // reload interval
+  _timer->setInterval(1000);
+
+  // Sessions : Warm-Up, Work and Recup
   if (_wTime > 0) {
     _wTime--;
+    emit timeValue(QVariant(_wTime));
     if (_wTime <= 3) {
       if (_wTime == 0) {
         _player->setMedia(QUrl("qrc:/sounds/sound/bip2.mp3"));
         _player->play();
+        // if warm-up session
+        if (_warmup) {
+          _warmup = false;
+          _wTime = _workTime + 1;
+          emit typeSession(QVariant(tr("Work")));
+          return;
+        }
       } else {
         _player->setMedia(QUrl("qrc:/sounds/sound/bip1.mp3"));
         _player->play();
@@ -56,16 +69,19 @@ void TimerCount::timeOut() {
     }
   }
 
-  _timer->setInterval(1000);
-  emit timeValue(QVariant(_wTime));
-
   if (_wTime == 0) {
     _cycle++;
 
     // Cycle Recuperation
     if (_cycle == 1) {
-      _wTime = _RecupTime + 1;
-      emit typeSession(QVariant(tr("recuperation")));
+      if (_count >= _countMax) {
+        _timer->stop();
+        emit finished();
+        emit typeSession(QVariant(tr("Finished")));
+      } else {
+        _wTime = _RecupTime + 1;
+        emit typeSession(QVariant(tr("Recuperation")));
+      }
     }
 
     // New Cycle Work or finish ?
@@ -77,7 +93,7 @@ void TimerCount::timeOut() {
       } else {
         _count++;
         _wTime = _workTime + 1;
-        emit typeSession(QVariant(tr("work")));
+        emit typeSession(QVariant(tr("Work")));
         emit countValue(QVariant(_count), QVariant(_countMax));
       }
     }
@@ -87,10 +103,14 @@ void TimerCount::timeOut() {
 //==============================================================
 void TimerCount::run() {
   qInfo() << "TimerCount run";
-
   emit timeValue(QVariant(_wTime));
-  emit typeSession(QVariant(tr("work")));
   emit countValue(QVariant(_count), QVariant(_countMax));
+
+  if (_warmup) {
+    emit typeSession(QVariant(tr("Warm-up")));
+  } else {
+    emit typeSession(QVariant(tr("Work")));
+  }
 
   if (_remainingTime > 0)
     _timer->start(_remainingTime);
@@ -120,8 +140,9 @@ void TimerCount::setWork(QVariant time) {
   bool ok = false;
   int t = time.toInt(&ok);
   if (ok) {
+    _warmup = true; // seconds for warm-up
+    _wTime = 5;
     _workTime = t;
-    _wTime = _workTime;
   }
 }
 
